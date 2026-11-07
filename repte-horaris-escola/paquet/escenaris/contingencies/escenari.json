@@ -1,0 +1,35 @@
+{
+  "nom": "contingencies",
+  "ficticia": true,
+  "descripcio": [
+    "(a) L'aula Q3/0013 (la ordinària amb més classes aquella setmana) es reserva per a un acte de 2027-03-15 a 2027-03-19: hi ha 12 sessions a recol·locar.",
+    "(b) Transmissió de Calor i Termotècnia (TE/21) passa de 91 a 130 alumnes: no cap a Q4/0011.",
+    "(c) La sessió S11527 (2027-03-08) es cancel·la i s'ha de recuperar en una data posterior i fins al 2027-03-19 inclòs.",
+    "(d) Avaria: el projector i l'ordinador de Q1/1003 no funcionen el 2027-03-10 i no es poden arreglar en el moment: les classes que hi tingui la vostra proposta aquell dia s'han de fer en un altre lloc."
+  ],
+  "aules_tancades": [
+    {
+      "aula": "Q3/0013",
+      "data_ini": "2027-03-15",
+      "data_fi": "2027-03-19"
+    },
+    {
+      "aula": "Q1/1003",
+      "data_ini": "2027-03-10",
+      "data_fi": "2027-03-10"
+    }
+  ],
+  "alumnes": [
+    {
+      "codi": "106047",
+      "grup": "TE/21",
+      "alumnes": 130
+    }
+  ],
+  "cancellades": [
+    {
+      "id_sessio": "S11527",
+      "recuperar_fins": "2027-03-19"
+    }
+  ]
+}

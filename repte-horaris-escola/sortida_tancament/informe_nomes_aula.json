@@ -1,0 +1,28 @@
+{
+  "solucio": "nomes_aula",
+  "veredicte": "VALIDA AMB RELAXACIONS DECLARADES",
+  "incompliments_que_compten": {},
+  "cost": {
+    "canvis_franja": 0,
+    "canvis_aula": 2,
+    "hores_mortes_min": 72930,
+    "desplacaments_aula": 3739
+  },
+  "relaxacions_a_declarar": [
+    {
+      "restriccio": "R1-FIXADA",
+      "sessions": "S06630",
+      "justificacio": "aula no disponible: Q1/1003 no disponible 2027-03-10..2027-03-10; la sessio fixada es fa a Q1/1011 (mateix dia i hora)"
+    },
+    {
+      "restriccio": "R1-FIXADA",
+      "sessions": "S06644",
+      "justificacio": "aula no disponible: Q1/1003 no disponible 2027-03-10..2027-03-10; la sessio fixada es fa a Q1/1011 (mateix dia i hora)"
+    }
+  ],
+  "canvis": [
+    "S06630: X 2027-03-10 08:30 Q1/1003 -> X 2027-03-10 08:30 Q1/1011",
+    "S06644: X 2027-03-10 10:30 Q1/1003 -> X 2027-03-10 10:30 Q1/1011"
+  ],
+  "sessions_sense_solucio": []
+}

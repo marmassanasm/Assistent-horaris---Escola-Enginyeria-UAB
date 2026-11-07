@@ -1,0 +1,163 @@
+{
+  "extractes": {
+    "1365": {
+      "fitxer": "1365_GEET_GEST_3r_i_4t_curs.xlsx",
+      "data_extraccio": "30/10/2026"
+    },
+    "1394": {
+      "fitxer": "1394-GED.xlsx",
+      "data_extraccio": "30/10/2026"
+    },
+    "1461": {
+      "fitxer": "1461-GEQ.xlsx",
+      "data_extraccio": "30/10/2026"
+    },
+    "1530": {
+      "fitxer": "1530_MRICSE.xlsx",
+      "data_extraccio": "03/11/2026"
+    },
+    "1560": {
+      "fitxer": "1560_MEBA.xlsx",
+      "data_extraccio": "03/11/2026"
+    },
+    "1626": {
+      "fitxer": "1626_GEI.xlsx",
+      "data_extraccio": "03/11/2026"
+    },
+    "1640": {
+      "fitxer": "1640_GEET_GEST_1r i 2n curs.xlsx",
+      "data_extraccio": "30/10/2026"
+    },
+    "1646": {
+      "fitxer": "1646_MET.xlsx",
+      "data_extraccio": "03/11/2026"
+    },
+    "1667": {
+      "fitxer": "1667-GCIS.xlsx",
+      "data_extraccio": "30/10/2026"
+    },
+    "1673": {
+      "fitxer": "1673 GIA.xlsx",
+      "data_extraccio": "03/11/2026"
+    },
+    "958": {
+      "fitxer": "958_GEI.xlsx",
+      "data_extraccio": "03/11/2026"
+    }
+  },
+  "files_sessio_brutes": 23502,
+  "sessions_examen_excloses": 308,
+  "sessions_amb_mes_dun_recurs_al_mateix_extracte": 13,
+  "sessions_amb_aula_diferent_entre_extractes": 13,
+  "sessions_compartides_entre_extractes": 5716,
+  "dia_sigma_no_coincideix_amb_data": 0,
+  "grups_de_sessions_compartides": 964,
+  "sessions_dins_grups_compartits": 2004,
+  "codis_aula_a_les_sessions": 51,
+  "codis_aula_que_casen_amb_aulari": 46,
+  "codis_aula_fora_aulari": [
+    "B3/0021",
+    "J/012",
+    "J/102",
+    "J/124",
+    "QC/1082"
+  ],
+  "aules_aulari": 56,
+  "aules_aulari_sense_us_a_partida": [
+    "Q5/1010",
+    "Q5/1011",
+    "Q6/0006",
+    "Q6/1006",
+    "Q6/2009",
+    "QC/0019",
+    "QC/0036.B",
+    "QC/3115.2",
+    "QC/3115.3",
+    "QC/3115.4"
+  ],
+  "aulari_per_tipus": {
+    "Laboratoris docents": 25,
+    "Aules docents": 21,
+    "Seminaris": 8,
+    "Aules informàtiques": 2
+  },
+  "sessions": 17026,
+  "sessions_per_tipus": {
+    "PAUL": 8383,
+    "TE": 5286,
+    "PLAB": 3108,
+    "SEM": 249
+  },
+  "sessions_sense_aula": 5914,
+  "sessions_sense_aula_no_plab": 4914,
+  "sessions_amb_aula_aulari": 10705,
+  "sessions_amb_aula_fora_aulari": 407,
+  "sessions_fixades": 8731,
+  "sessions_movibles": 8295,
+  "sessions_per_torn_requerit": {
+    "mati": 9354,
+    "tarda": 7672
+  },
+  "sessions_curs_desconegut": 407,
+  "codis_curs_desconegut": [
+    "102764",
+    "102767",
+    "102771",
+    "103806"
+  ],
+  "sessions_sense_docent": 855,
+  "grups_amb_sessions": 1307,
+  "grups_sense_docent": 81,
+  "docents": 413,
+  "activitats_setmanals": 1930,
+  "sessions_fora_finestra": 72,
+  "notes_curs": [
+    "GEI 102783: curs 3r i 4t a assignatura_curs",
+    "GEI 102787: curs 3r i 4t a assignatura_curs",
+    "GEI 102790: curs 3r i 4t a assignatura_curs",
+    "GEI 102778: curs 3r i 4t a assignatura_curs",
+    "GEI 102782: curs 3r i 4t a assignatura_curs",
+    "GEI 102777: curs 3r i 4t a assignatura_curs",
+    "GEI 102786: curs 3r i 4t a assignatura_curs",
+    "GEI 102759: curs 3r i 4t a assignatura_curs",
+    "GEI 102773: curs 3r i 4t a assignatura_curs",
+    "GEI 102757: curs 3r i 4t a assignatura_curs",
+    "GEI 102789: curs 3r i 4t a assignatura_curs",
+    "GEI 102741: curs 3r i 4t a assignatura_curs",
+    "GEI 102776: curs 3r i 4t a assignatura_curs",
+    "GEI 102751: curs 3r i 4t a assignatura_curs",
+    "GEI 102794: curs 3r i 4t a assignatura_curs",
+    "GEI 102788: curs 3r i 4t a assignatura_curs",
+    "GEI 102793: curs 3r i 4t a assignatura_curs",
+    "GEI 102781: curs 3r i 4t a assignatura_curs",
+    "GEI 102792: curs 3r i 4t a assignatura_curs",
+    "GEI 102763: curs 3r i 4t a assignatura_curs",
+    "GEI 102785: curs 3r i 4t a assignatura_curs",
+    "GEI 102752: curs 3r i 4t a assignatura_curs",
+    "GEI 102740: curs 3r i 4t a assignatura_curs",
+    "GEI 102791: curs 3r i 4t a assignatura_curs",
+    "GEI 102750: curs 3r i 4t a assignatura_curs",
+    "GEI 102754: curs 3r i 4t a assignatura_curs",
+    "GEI 102749: curs 3r i 4t a assignatura_curs",
+    "GEI 102758: curs 3r i 4t a assignatura_curs",
+    "GEI 102784: curs 3r i 4t a assignatura_curs",
+    "GEI 102753: curs 3r i 4t a assignatura_curs",
+    "GEQ 102443: curs 1r i 2n a assignatura_curs",
+    "GEQ 102436: curs 2n i 3r a assignatura_curs",
+    "15 parelles (titulació, codi) amb el curs pres dels fitxers treballats"
+  ],
+  "aclariments_escola": {
+    "font": "Nacho Beneite (Teams, 05/11/2026)",
+    "cohorts_corregides": {
+      "102436": 36,
+      "102710": 60
+    },
+    "sessions_sense_espai": 1169,
+    "alumnes_origen": {
+      "estimat": 184,
+      "sense_dada": 636,
+      "sigma": 16206
+    },
+    "sessions_torn_conflicte": 0
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "nom": "incidencia",
+  "ficticia": true,
+  "aules_tancades": [
+    {
+      "aula": "Q1/1003",
+      "data_ini": "2027-03-10",
+      "data_fi": "2027-03-10"
+    }
+  ]
+}

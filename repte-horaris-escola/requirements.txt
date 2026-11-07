@@ -1,0 +1,8 @@
+streamlit>=1.40
+pandas>=2.2
+numpy
+ortools>=9.10
+fastapi>=0.110
+pydantic>=2
+reportlab>=4
+uvicorn

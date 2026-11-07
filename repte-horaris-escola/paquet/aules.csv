@@ -1,0 +1,57 @@
+aula,edifici,tipus,descripcio,capacitat,ordinaria
+Q6/2009,Q,Laboratoris docents,Laboratori,24,0
+Q6/2008,Q,Laboratoris docents,Laboratori Telecomunicacions,40,0
+Q6/2007,Q,Laboratoris docents,Laboratori docent Telecomunic.,24,0
+Q6/2005,Q,Laboratoris docents,Laboratori docent Telecomunic.,28,0
+Q6/2004,Q,Laboratoris docents,Laboratori docent Elect.,24,0
+Q6/1012,Q,Laboratoris docents,Laboratori ABP,40,0
+Q6/1006,Q,Laboratoris docents,Lab doc EQ B (Q6/1007+Q6/1008),32,0
+Q6/0006,Q,Laboratoris docents,Lab.doc.(Q6/0005-0007-0008),48,0
+Q5/2009,Q,Laboratoris docents,Laboratori docent CCD,28,0
+Q5/2008,Q,Laboratoris docents,Laboratori docent CCD,28,0
+Q5/2007,Q,Laboratoris docents,Laboratori Cèl·lula Flexible,12,0
+Q5/2006,Q,Laboratoris docents,Laboratori docent Me,40,0
+Q5/2003,Q,Laboratoris docents,Laboratori docent Sist. Dig.,25,0
+Q5/1011,Q,Laboratoris docents,Sala servidors,32,0
+Q5/1010,Q,Laboratoris docents,Laboratori docent Automàtica,24,0
+Q5/1009,Q,Laboratoris docents,Laboratori docent Elect.Gral.,24,0
+Q5/1005,Q,Laboratoris docents,Laboratori docent Ee,24,0
+Q5/0004,Q,Laboratoris docents,Laboratori docent ACSO,24,0
+Q5/0003,Q,Laboratoris docents,Lab. docent Estruct. Comput.,24,0
+Q3/0007,Q,Laboratoris docents,Laboratori Integrat 6 (Q3/0007),24,0
+Q2/0019,Q,Laboratoris docents,Lab. Integrat Informàtica 5,24,0
+Q2/0017,Q,Laboratoris docents,Lab. Integrat Informàtica 4,24,0
+Q2/0013,Q,Laboratoris docents,Lab. Integrat Informàtica 3,24,0
+Q2/0011,Q,Laboratoris docents,Lab. Integrat Informàtica 2,24,0
+Q2/0007,Q,Laboratoris docents,Lab. Integrat Informàtica 1,24,0
+Q1/0007,Q,Aules informàtiques,Aula d`informàtica A ,54,0
+Q1/0019,Q,Aules informàtiques,Aula d`informàtica B,54,0
+Q4/1013,Q,Aules docents,Aula Q4/1013 (dues portes),88,1
+Q4/1009,Q,Aules docents,Aula Q4/1009 (dues portes),88,1
+Q4/1005,Q,Aules docents,Aula Q4/1005,50,1
+Q4/1003,Q,Aules docents,Aula Q4/1003,48,1
+Q4/0011,Q,Aules docents,Aula Q4/0011 (tres portes),117,1
+Q4/0007,Q,Aules docents,Aula Q4/0007 (dues portes),117,1
+Q4/0003,Q,Aules docents,Aula Q4/0003 (dues portes),90,1
+Q3/1011,Q,Aules docents,Aula Q3/1011 (tres portes),130,1
+Q3/1007,Q,Aules docents,Aules Q3/1007 (dues portes),130,1
+Q3/1003,Q,Aules docents,Aules Q3/1003 (dues portes),100,1
+Q3/0013,Q,Aules docents,Aula Q3/0013,48,1
+Q3/0011,Q,Aules docents,Aula Q3/0011,24,1
+Q3/0009,Q,Aules docents,Aula Q3/0009,48,1
+Q3/0003,Q,Aules docents,Aula Q3/0003 (dues portes),100,1
+Q2/1013,Q,Aules docents,Aula Q2/1013 (dues portes),90,1
+Q2/1009,Q,Aules docents,Aula Q2/1009 (dues portes),90,1
+Q2/1005,Q,Aules docents,Aula Q2/1005 (dues portes),63,1
+Q2/1003,Q,Aules docents,Aula Q2/1003,63,1
+Q1/1011,Q,Aules docents,Aula Q1/1011 (tres portes),160,1
+Q1/1007,Q,Aules docents,Aula Q1/1007 (dues portes),90,1
+Q1/1003,Q,Aules docents,Aula Q1/1003 (dues portes),90,1
+QC/0011,Q,Seminaris,Seminari A,34,0
+QC/0015,Q,Seminaris,Seminari B,24,0
+QC/0019,Q,Seminaris,Seminari C,10,0
+QC/0036.B,Q,Seminaris,Seminari D,30,0
+QC/3115.1,Q,Seminaris,Seminari E,20,0
+QC/3115.2,Q,Seminaris,Seminari F,20,0
+QC/3115.3,Q,Seminaris,Seminari G,16,0
+QC/3115.4,Q,Seminaris,Seminari H,20,0

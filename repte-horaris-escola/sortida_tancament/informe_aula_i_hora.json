@@ -1,0 +1,27 @@
+{
+  "solucio": "aula_i_hora",
+  "veredicte": "NO VALIDA",
+  "incompliments_que_compten": {
+    "R1-TORN": 2344,
+    "R2-FINESTRA": 13,
+    "R3-TANCADA": 2,
+    "R5-SENSE-AULA": 772
+  },
+  "cost": {
+    "canvis_franja": 0,
+    "canvis_aula": 0,
+    "hores_mortes_min": 72930,
+    "desplacaments_aula": 2872
+  },
+  "canvis": [],
+  "sessions_sense_solucio": [
+    {
+      "id": "S06630",
+      "motiu": "S06630 està fixada (R1: GEI 1r) i ja tenia aula a la partida"
+    },
+    {
+      "id": "S06644",
+      "motiu": "S06644 està fixada (R1: GEI 1r) i ja tenia aula a la partida"
+    }
+  ]
+}

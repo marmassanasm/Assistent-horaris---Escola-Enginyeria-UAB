@@ -1,0 +1,60 @@
+id_sessio,assignatura,tipus_canvi,de,a,motiu,afecta_docents,afecta_alumnat,avisar,data_avis
+S11527,106047 TE/21,recuperacio,2027-03-08 11:30 -,2027-03-15 09:30 Q3/1007,sessió cancel·lada: es recupera dins el termini,D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S03029,102738 PAUL/322,aula,2027-03-16 20:00 Q3/0013,2027-03-16 20:00 Q3/0003,aula tancada per l'imprevist,D042,GEET:3r|GEST:3r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S03945,102746 PAUL/412,aula,2027-03-19 09:30 Q3/0013,2027-03-19 09:30 Q3/0003,aula tancada per l'imprevist,D246|D298,GEI:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S03975,102746 PAUL/432,aula,2027-03-19 10:30 Q3/0013,2027-03-19 10:30 Q3/0003,aula tancada per l'imprevist,D028,GEI:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S04396,102749 PAUL/451,aula,2027-03-19 16:00 Q3/0013,2027-03-19 16:00 Q3/0003,aula tancada per l'imprevist,D321,GEI:3r|GEI:4t,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S04639,102751 PAUL/451,aula,2027-03-19 17:00 Q3/0013,2027-03-19 17:00 Q3/0003,aula tancada per l'imprevist,D417,GEI:3r|GEI:4t,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S06575,102772 PAUL/432,aula,2027-03-15 12:30 Q3/0013,2027-03-15 12:30 Q3/0003,aula tancada per l'imprevist,D228,GEI:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S06630,102772 TE/41,aula,2027-03-10 08:30 Q1/1003,2027-03-10 08:30 Q1/1011,aula tancada per l'imprevist,D219,GEI:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S06644,102772 TE/43,aula,2027-03-10 10:30 Q1/1003,2027-03-10 10:30 Q1/1011,aula tancada per l'imprevist,D031,GEI:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S06658,102772 TE/45,aula,2027-03-10 15:00 Q1/1003,2027-03-10 15:00 Q1/1007,aula tancada per l'imprevist,D031,GEI:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S06971,102775 PAUL/412,aula,2027-03-19 08:30 Q3/0013,2027-03-19 08:30 Q3/0003,aula tancada per l'imprevist,D082|D467,GEI:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S07620,102784 TE/440,aula,2027-03-10 17:00 Q1/1003,2027-03-10 17:00 Q1/1011,aula tancada per l'imprevist,D284,GEI:3r|GEI:4t,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S09634,104343 PAUL/812,aula,2027-03-17 10:30 Q3/0013,2027-03-17 10:30 Q3/0009,aula tancada per l'imprevist,D190|D385,GED:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S10330,104359 PAUL/82,aula,2027-03-15 10:30 Q3/0013,2027-03-15 10:30 Q2/1003,aula tancada per l'imprevist,D175,GED:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11516,106047 TE/21,aula,2027-02-01 10:30 Q4/0007,2027-02-01 10:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11517,106047 TE/21,aula,2027-02-03 10:30 Q3/0003,2027-02-03 10:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11518,106047 TE/21,aula,2027-02-04 10:30 Q4/0007,2027-02-04 10:30 Q3/1011,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11519,106047 TE/21,aula,2027-02-08 11:30 Q4/0011,2027-02-08 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11521,106047 TE/21,aula,2027-02-15 11:30 Q4/0011,2027-02-15 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11523,106047 TE/21,aula,2027-02-22 11:30 Q4/0011,2027-02-22 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11525,106047 TE/21,aula,2027-03-01 11:30 Q4/0011,2027-03-01 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11529,106047 TE/21,aula,2027-03-15 11:30 Q4/0011,2027-03-15 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11532,106047 TE/21,aula,2027-04-05 11:30 Q4/0011,2027-04-05 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11538,106047 TE/21,aula,2027-04-19 11:30 Q4/0011,2027-04-19 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11541,106047 TE/21,aula,2027-04-26 11:30 Q4/0011,2027-04-26 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11543,106047 TE/21,aula,2027-05-03 11:30 Q4/0011,2027-05-03 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11520,106047 TE/21,aula,2027-02-11 11:30 Q4/0011,2027-02-11 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11522,106047 TE/21,aula,2027-02-18 11:30 Q4/0011,2027-02-18 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11524,106047 TE/21,aula,2027-02-25 11:30 Q4/0011,2027-02-25 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11526,106047 TE/21,aula,2027-03-04 11:30 Q4/0011,2027-03-04 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11528,106047 TE/21,aula,2027-03-11 11:30 Q4/0011,2027-03-11 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11531,106047 TE/21,aula,2027-04-01 11:30 Q4/0011,2027-04-01 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11535,106047 TE/21,aula,2027-04-08 11:30 Q4/0011,2027-04-08 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11537,106047 TE/21,aula,2027-04-15 11:30 Q4/0011,2027-04-15 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11540,106047 TE/21,aula,2027-04-22 11:30 Q4/0011,2027-04-22 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11542,106047 TE/21,aula,2027-04-29 11:30 Q4/0011,2027-04-29 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11545,106047 TE/21,aula,2027-05-06 11:30 Q4/0011,2027-05-06 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11547,106047 TE/21,aula,2027-05-20 11:30 Q4/0011,2027-05-20 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11530,106047 TE/21,aula,2027-03-31 11:30 Q4/0011,2027-03-31 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11534,106047 TE/21,aula,2027-04-07 11:30 Q4/0011,2027-04-07 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11536,106047 TE/21,aula,2027-04-14 11:30 Q4/0011,2027-04-14 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11539,106047 TE/21,aula,2027-04-21 11:30 Q4/0011,2027-04-21 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11544,106047 TE/21,aula,2027-05-05 11:30 Q4/0011,2027-05-05 11:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11533,106047 TE/21,aula,2027-04-06 12:30 Q4/0011,2027-04-06 12:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11546,106047 TE/21,aula,2027-05-10 12:30 Q4/0011,2027-05-10 12:30 Q3/1007,el grup ja no hi cap (més alumnes),D109|D250,GEQ:2n,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11657,106049 SEM/212,aula,2027-03-15 19:00 Q3/0013,2027-03-15 19:00 Q3/0003,aula tancada per l'imprevist,D032,GEQ:3r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S11736,106050 SEM/211,aula,2027-03-19 11:30 Q3/0013,2027-03-19 11:30 Q3/0003,aula tancada per l'imprevist,D256,GEQ:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S12492,106929 PAUL/611,aula,2027-03-17 08:30 Q3/0013,2027-03-17 08:30 Q3/0009,aula tancada per l'imprevist,D360,GCIS:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S13730,107846 PAUL/311,aula,2027-03-16 08:30 Q3/0013,2027-03-16 08:30 Q4/1003,aula tancada per l'imprevist,D279,GEET:1r|GEST:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S13744,107846 PAUL/312,aula,2027-03-16 09:30 Q3/0013,2027-03-16 09:30 Q3/0003,aula tancada per l'imprevist,D279,GEET:1r|GEST:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S15262,107891 PAUL/412,aula,2027-03-16 10:30 Q3/0013,2027-03-16 10:30 Q3/1003,aula tancada per l'imprevist,D273,GEI:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S15288,107891 PAUL/431,aula,2027-03-16 12:30 Q3/0013,2027-03-16 12:30 Q3/0009,aula tancada per l'imprevist,D290,GEI:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S15725,108083 PAUL/331,aula,2027-03-15 08:30 Q3/0013,2027-03-15 08:30 Q3/0003,aula tancada per l'imprevist,D251,GEET:1r|GEST:1r,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S16858,44734 PLAB/1,aula,2027-03-17 17:00 Q3/0013,2027-03-17 17:00 Q3/0003,aula tancada per l'imprevist,D085|D246,MRICSE:M,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S16869,44734 TE/1,aula,2027-03-15 15:00 Q3/0013,2027-03-15 15:00 Q3/0003,aula tancada per l'imprevist,D085|D246,MRICSE:M,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S16879,44735 PLAB/1,aula,2027-03-17 15:00 Q3/0013,2027-03-17 15:00 QC/0015,aula tancada per l'imprevist,D212,MRICSE:M,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S16890,44735 TE/1,aula,2027-03-15 17:00 Q3/0013,2027-03-15 17:00 Q3/0011,aula tancada per l'imprevist,D212,MRICSE:M,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S16909,44736 TE/1,aula,2027-03-16 17:00 Q3/0013,2027-03-16 17:00 Q3/0011,aula tancada per l'imprevist,D110|D117|D295|D375,MRICSE:M,"docent, alumnat, Gestió Acadèmica",2026-11-07
+S16929,44737 TE/1,aula,2027-03-16 15:00 Q3/0013,2027-03-16 15:00 Q3/0011,aula tancada per l'imprevist,D317,MRICSE:M,"docent, alumnat, Gestió Acadèmica",2026-11-07

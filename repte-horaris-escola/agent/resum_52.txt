@@ -1,0 +1,25 @@
+DIAGNÒSTIC DEL NIVELL 5.2 — SEMESTRE 2
+================================================
+Sessions: 7739
+Activitats recurrents: 773
+Aules disponibles: 56
+Activitats compartides entre més d'un grup: 323
+
+Sessions per tipus:
+  PAUL: 3983
+  PLAB: 1171
+  SEM: 73
+  TE: 2512
+
+Sessions fixades:
+  R1: GEET 1r: 447
+  R1: GEET 2n: 390
+  R1: GEI 1r: 864
+  R1: GEI 1r (compartida): 156
+  R1: GEI 2n: 823
+  R7: PLAB: 1171
+
+Activitats amb més d'un horari intern: 0
+
+Fitxer detallat: agent/activitats_semestre_2.csv
+Aquest diagnòstic no modifica l'horari ni declara cap proposta vàlida.

@@ -1,0 +1,6 @@
+{
+  "nom": "grau-nou-40",
+  "ficticia": true,
+  "descripcio": "Un grau nou amb 40 places a 1r el curs vinent. Les seves sessions copien l'estructura de 1r de GED (assignatures, tipus, hores, setmanes) amb noms, grups i docents ficticis (N…), sense aula i sense fixar, al torn de matí.",
+  "sessions_extra": "sessions_extra.csv"
+}

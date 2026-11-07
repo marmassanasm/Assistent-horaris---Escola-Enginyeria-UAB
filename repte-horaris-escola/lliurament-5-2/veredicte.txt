@@ -1,0 +1,3 @@
+Veredicte: VALIDA AMB RELAXACIONS DECLARADES
+Incompliments declarats: 461
+  R1-TORN: compten 0, declarades 461, heretades 780
