@@ -15,7 +15,9 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))   # perque trobi 'agent' i 'horaris'
+ARREL = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ARREL))   # perque trobi 'agent' i 'horaris'
+os.chdir(ARREL)                  # perque trobi 'paquet/' i 'proposta-torns.csv' des de qualsevol lloc (p. ex. al nuvol)
 
 import pandas as pd
 import streamlit as st
@@ -24,7 +26,7 @@ from agent import api, estil, pdfs
 from horaris.check import Informe, _col_loca
 from horaris.model import carrega_base, fmt, llegeix_proposta
 
-st.set_page_config(page_title="Assistent d'horaris - Escola d'Enginyeria UAB", layout='wide')
+st.set_page_config(page_title="Assistent d'horaris EEBE", layout='wide')
 estil.aplica()
 st.title("Assistent d'horaris - Escola d'Enginyeria UAB")
 st.caption("Hackathon 2026 - Mar Massanas")
