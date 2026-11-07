@@ -87,84 +87,18 @@ t_imp, t_hor, t_pdf, t_aul, t_bus = st.tabs(['Imprevist', 'Horari', 'PDF', 'Aule
 
 # ---------------------------------------------------------------- imprevist (sempre sobre la proposta del 2n semestre)
 with t_imp:
-    mode = st.radio('Què ha passat?', ['Una aula no es pot fer servir', 'Diversos problemes alhora'], horizontal=True, key='imp_mode')
-    if mode == 'Una aula no es pot fer servir':
-        st.subheader('Una aula no es pot fer servir')
-        base2, col2 = dades(2)
-        d_min, d_max = min(x.data for x in col2.values()), max(x.data for x in col2.values())
-        c1, c2, c3 = st.columns(3)
-        aules_l = sorted(base2.aules)
-        aula = c1.selectbox('Aula', aules_l, index=aules_l.index('Q3/0013') if 'Q3/0013' in aules_l else 0)
-        d1 = c2.date_input('Des del', dt.date(2027, 3, 15), min_value=d_min, max_value=d_max, key='imp_d1')
-        d2 = c3.date_input('Fins al', max(dt.date(2027, 3, 19), d1), min_value=d_min, max_value=d_max, key='imp_d2')
-        dates_ok = d1 <= d2
-        if not dates_ok:
-            st.error("La data d'inici ha de ser anterior o igual a la de fi. Canvia-la per poder continuar.")
-        motiu = st.text_input('Motiu', 'aula no disponible')
-        if st.button('Proposa solució', type='primary', disabled=not dates_ok):
-            with st.spinner('Buscant solució i validant-la amb el verificador...'):
-                r = api.imprevist(api.ImprevistIn(aula=aula, data_ini=d1.isoformat(), data_fi=d2.isoformat(), motiu=motiu))
-            s = r['solucio']
-            ok = s['veredicte'] != 'NO VALIDA' and not s['sessions_sense_solucio']
-            (st.success if ok else st.error)(f"Veredicte del verificador: {s['veredicte']} · classes afectades: {r['afectades']}")
-            st.write(f"Canvis d'aula: {s['cost']['canvis_aula']} · canvis d'hora: {s['cost']['canvis_franja']}")
-            if s['sessions_sense_solucio']:
-                st.warning('Sessions sense solució:')
-                st.dataframe(pd.DataFrame(s['sessions_sense_solucio']))
-            noms_i = pdfs.noms_assignatures(api.PAQUET)
-            QUE = {'R1-FIXADA': "Sessió fixada (no s'hauria de moure) que canvia d'aula",
-                   'R7-PLAB': "Laboratori PLAB que canvia d'aula",
-                   'R1-TORN': 'Sessió fora del seu torn (matí/tarda) respecte de la norma'}
-            if s['relaxacions_a_declarar']:
-                with st.expander(f"Excepcions a declarar ({len(s['relaxacions_a_declarar'])}) · són {len(s['relaxacions_a_declarar'])} de les {len(r['avisos_i_registre'])} classes del registre"):
-                    st.caption("Són les regles que la solució incompleix a propòsit perquè no hi havia alternativa millor. "
-                               "S'han d'explicar a l'organització perquè el verificador les accepti.")
-                    ex = []
-                    for r_ in s['relaxacions_a_declarar']:
-                        ids = str(r_['sessions']).split('|')
-                        ss = base2.sessions.get(ids[0])
-                        ex.append({'regla': r_['restriccio'], 'què vol dir': QUE.get(r_['restriccio'], ''),
-                                   'assignatura': noms_i.get(ss.codi, ss.codi) if ss else '',
-                                   'grup': f'{ss.tipus} {ss.grup}' if ss else '', 'id_sessio': r_['sessions'],
-                                   'justificació': r_['justificacio']})
-                    st.dataframe(pd.DataFrame(ex), hide_index=True)
-            regla_de = {}
-            for r_ in s['relaxacions_a_declarar']:
-                for i_ in str(r_['sessions']).split('|'):
-                    regla_de[i_] = r_['restriccio']
-            df0 = pd.DataFrame(r['avisos_i_registre'])
-            df = df0
-            if len(df0):
-                def _ini_aula(txt):
-                    d_, h_, a_ = txt.split(' ', 2)
-                    return d_, h_, a_
-                files_v = []
-                for x in df0.itertuples():
-                    ss = base2.sessions[x.id_sessio]
-                    d1_, h1_, a1_ = _ini_aula(x.de)
-                    d2_, h2_, a2_ = _ini_aula(x.a)
-                    dur = ss.durada
-                    hm_ = lambda h: int(h[:2]) * 60 + int(h[3:])
-                    files_v.append({
-                        'data': d1_, 'assignatura': noms_i.get(ss.codi, ss.codi), 'tipus': ss.tipus, 'grup': ss.grup,
-                        'abans (hora)': f'{h1_}-{fmt(hm_(h1_) + dur)}', 'abans (aula)': a1_,
-                        'ara (data)': d2_ if d2_ != d1_ else '(la mateixa)',
-                        'ara (hora)': f'{h2_}-{fmt(hm_(h2_) + dur)}', 'ara (aula)': a2_,
-                        'tipus de canvi': x.tipus_canvi, 'excepció a declarar': regla_de.get(x.id_sessio, ''), 'docents': x.afecta_docents, 'alumnat': x.afecta_alumnat,
-                        'avisar': x.avisar, 'id_sessio': x.id_sessio})
-                df = pd.DataFrame(files_v).sort_values(['data', 'abans (hora)']).reset_index(drop=True)
-            st.markdown('**Registre de canvis i avisos (esborranys)**')
-            st.dataframe(df, hide_index=True)
-    else:
-        st.subheader('Diversos problemes alhora')
-        st.caption("Afegeix només els problemes que tinguis. L'aplicació els resol tots junts, canviant el mínim, "
-                   "i ho valida amb el verificador.")
-        base2, col2 = dades(2)
-        noms_c = pdfs.noms_assignatures(api.PAQUET)
-        d_min, d_max = min(x.data for x in col2.values()), max(x.data for x in col2.values())
-        aules_l = sorted(base2.aules)
+    st.subheader('Imprevist: què ha passat?')
+    st.caption("Marca els problemes que tens. L'aplicació els resol tots junts, canviant el mínim, "
+               "i ho valida amb el verificador.")
+    base2, col2 = dades(2)
+    noms_c = pdfs.noms_assignatures(api.PAQUET)
+    d_min, d_max = min(x.data for x in col2.values()), max(x.data for x in col2.values())
+    aules_l = sorted(base2.aules)
 
-        st.markdown('**1. Aules que no es poden fer servir** (reservades, avariades, en obres...)')
+    st.markdown('**1. Aules que no es poden fer servir** (reservades, avariades, en obres...)')
+    usa_t = st.checkbox('Hi ha aules que no es poden fer servir', value=True, key='imp_usa_t')
+    taula_t = pd.DataFrame(columns=['aula', 'des del', 'fins al'])
+    if usa_t:
         taula_t = st.data_editor(
             pd.DataFrame({'aula': ['Q3/0013', 'Q1/1003'],
                           'des del': [dt.date(2027, 3, 15), dt.date(2027, 3, 10)],
@@ -174,91 +108,91 @@ with t_imp:
                            'des del': st.column_config.DateColumn('des del', min_value=d_min, max_value=d_max),
                            'fins al': st.column_config.DateColumn('fins al', min_value=d_min, max_value=d_max)})
 
-        st.markdown('**2. Un grup que ja no hi cap a la seva aula** (hi ha més alumnes)')
-        grups = {}
-        for x in base2.sessions.values():
-            if x.tipus in ('TE', 'PAUL', 'SEM') and x.alumnes > 0 and not x.sense_espai:
-                grups[(x.codi, x.grup)] = (x.alumnes, x.tipus)
-        etiq_g = {f"{noms_c.get(c, c)} · {g} ({n} alumnes ara)": (c, g) for (c, g), (n, _) in sorted(grups.items(), key=lambda kv: (noms_c.get(kv[0][0], kv[0][0]), kv[0][1]))}
-        usa_g = st.checkbox('Hi ha un grup que creix', value=True, key='imp_usa_g')
-        grup_sel, nous = None, 0
-        if usa_g:
-            g1, g2 = st.columns([3, 1])
-            defecte = next((k for k, v in etiq_g.items() if v == ('106047', 'TE/21')), list(etiq_g)[0])
-            grup_sel = g1.selectbox('Assignatura i grup', list(etiq_g), index=list(etiq_g).index(defecte), key='imp_grup')
-            nous = g2.number_input('Alumnes nous', min_value=1, max_value=400, value=130, key='imp_nous')
+    st.markdown('**2. Un grup que ja no hi cap a la seva aula** (hi ha més alumnes)')
+    grups = {}
+    for x in base2.sessions.values():
+        if x.tipus in ('TE', 'PAUL', 'SEM') and x.alumnes > 0 and not x.sense_espai:
+            grups[(x.codi, x.grup)] = (x.alumnes, x.tipus)
+    etiq_g = {f"{noms_c.get(c, c)} · {g} ({n} alumnes ara)": (c, g) for (c, g), (n, _) in sorted(grups.items(), key=lambda kv: (noms_c.get(kv[0][0], kv[0][0]), kv[0][1]))}
+    usa_g = st.checkbox('Hi ha un grup que creix', value=True, key='imp_usa_g')
+    grup_sel, nous = None, 0
+    if usa_g:
+        g1, g2 = st.columns([3, 1])
+        defecte = next((k for k, v in etiq_g.items() if v == ('106047', 'TE/21')), list(etiq_g)[0])
+        grup_sel = g1.selectbox('Assignatura i grup', list(etiq_g), index=list(etiq_g).index(defecte), key='imp_grup')
+        nous = g2.number_input('Alumnes nous', min_value=1, max_value=400, value=130, key='imp_nous')
 
-        st.markdown('**3. Una classe cancel·lada que cal recuperar**')
-        usa_c = st.checkbox('Hi ha una classe cancel·lada', value=True, key='imp_usa_c')
-        sid_c, fins_c = None, None
-        if usa_c:
-            c1, c2 = st.columns(2)
-            dia_c = c1.date_input('Dia de la classe cancel·lada', dt.date(2027, 3, 8), min_value=d_min, max_value=d_max, key='imp_dia_c')
-            fins_c = c2.date_input('Es pot recuperar fins al', dt.date(2027, 3, 19), min_value=d_min, max_value=d_max, key='imp_fins_c')
-            del_dia = sorted((x for x in col2.values() if x.data == dia_c and es_real(x)), key=lambda x: (x.ini, x.s.id))
-            etiq_c = {f"{fmt(x.ini)}-{fmt(x.fi)} · {noms_c.get(x.s.codi, x.s.codi)} · {x.s.tipus} {x.s.grup} · {x.aula or '(sense aula)'}": x.s.id for x in del_dia}
-            if etiq_c:
-                defecte_c = next((k for k, v in etiq_c.items() if v == 'S11527'), list(etiq_c)[0])
-                sid_c = etiq_c[st.selectbox('Quina classe', list(etiq_c), index=list(etiq_c).index(defecte_c), key='imp_sel_c')]
-            else:
-                st.info('Aquest dia no hi ha cap classe. Tria un altre dia.')
+    st.markdown('**3. Una classe cancel·lada que cal recuperar**')
+    usa_c = st.checkbox('Hi ha una classe cancel·lada', value=True, key='imp_usa_c')
+    sid_c, fins_c = None, None
+    if usa_c:
+        c1, c2 = st.columns(2)
+        dia_c = c1.date_input('Dia de la classe cancel·lada', dt.date(2027, 3, 8), min_value=d_min, max_value=d_max, key='imp_dia_c')
+        fins_c = c2.date_input('Es pot recuperar fins al', dt.date(2027, 3, 19), min_value=d_min, max_value=d_max, key='imp_fins_c')
+        del_dia = sorted((x for x in col2.values() if x.data == dia_c and es_real(x)), key=lambda x: (x.ini, x.s.id))
+        etiq_c = {f"{fmt(x.ini)}-{fmt(x.fi)} · {noms_c.get(x.s.codi, x.s.codi)} · {x.s.tipus} {x.s.grup} · {x.aula or '(sense aula)'}": x.s.id for x in del_dia}
+        if etiq_c:
+            defecte_c = next((k for k, v in etiq_c.items() if v == 'S11527'), list(etiq_c)[0])
+            sid_c = etiq_c[st.selectbox('Quina classe', list(etiq_c), index=list(etiq_c).index(defecte_c), key='imp_sel_c')]
+        else:
+            st.info('Aquest dia no hi ha cap classe. Tria un altre dia.')
 
-        t_ok = [r for r in taula_t.dropna().to_dict('records')] if len(taula_t) else []
-        errors = [f"{r['aula']}: la data d'inici és posterior a la de fi" for r in t_ok if r['des del'] > r['fins al']]
-        for e in errors:
-            st.error(e)
-        if usa_c and fins_c and dia_c >= fins_c:
-            st.error('El termini per recuperar la classe ha de ser posterior al dia en què es cancel·la.')
-            errors.append('termini')
-        res_buit = not t_ok and not (usa_g and grup_sel) and not (usa_c and sid_c)
-        if res_buit:
-            st.info('Afegeix almenys un problema.')
-        if st.button('Resol-ho tot', type='primary', disabled=bool(errors) or res_buit, key='imp_go'):
-            with st.spinner('Buscant la solució i validant-la amb el verificador...'):
-                try:
-                    r = api.resol_imprevist_complet(
-                        [{'aula': x['aula'], 'data_ini': x['des del'].isoformat(), 'data_fi': x['fins al'].isoformat()} for x in t_ok],
-                        [{'codi': etiq_g[grup_sel][0], 'grup': etiq_g[grup_sel][1], 'alumnes': nous}] if usa_g and grup_sel else [],
-                        [{'id_sessio': sid_c, 'recuperar_fins': fins_c.isoformat()}] if usa_c and sid_c else [])
-                except Exception as e:
-                    st.error(f'No he pogut resoldre-ho: {e}')
-                    st.stop()
-            ok = r['veredicte'] != 'NO VALIDA' and not r['sense_solucio']
-            (st.success if ok else st.error)(f"Veredicte del verificador: {r['veredicte']} · {len(r['registre'])} classes afectades")
-            m1, m2, m3 = st.columns(3)
-            m1.metric("Canvis d'aula", r['canvis_aula'])
-            m2.metric("Canvis de dia o hora", r['canvis_franja'])
-            m3.metric('Classes sense solució', len(r['sense_solucio']))
-            if r['sense_solucio']:
-                st.warning('Aquestes classes no han trobat lloc:')
-                st.dataframe(pd.DataFrame(r['sense_solucio']), hide_index=True)
-            regla_de = {}
-            for r_ in r['relaxacions']:
-                for i_ in str(r_['sessions']).split('|'):
-                    regla_de[i_] = r_['restriccio']
-            n_exc = sum(1 for x in r['registre'] if x['id_sessio'] in regla_de)
-            QUE2 = {'R1-FIXADA': "Sessió fixada (no s'hauria de moure) que canvia d'aula",
-                    'R7-PLAB': "Laboratori PLAB que canvia d'aula",
-                    'R1-TORN': 'Sessió fora del seu torn (matí/tarda), heretada del pas anterior'}
-            exc_imp = [r_ for r_ in r['relaxacions'] if r_['restriccio'] != 'R1-TORN']
-            if exc_imp:
-                with st.expander(f"Excepcions a declarar per aquest imprevist ({sum(len(x['sessions'].split('|')) for x in exc_imp)} classes)"):
-                    st.caption("Són regles que normalment no es toquen però que aquí s'han hagut d'incomplir perquè l'aula no estava disponible.")
-                    st.dataframe(pd.DataFrame([{'regla': x['restriccio'], 'què vol dir': QUE2.get(x['restriccio'], ''),
-                                                'classes': len(x['sessions'].split('|')), 'justificació': x['justificacio']} for x in exc_imp]), hide_index=True)
-            filas = []
-            for x in r['registre']:
-                ss = base2.sessions[x['id_sessio']]
-                d_, h_, a_ = x['de'].split(' ', 2)
-                d2_, h2_, a2_ = x['a'].split(' ', 2)
-                hm_ = lambda h: int(h[:2]) * 60 + int(h[3:])
-                filas.append({'data': d_, 'assignatura': noms_c.get(ss.codi, ss.codi), 'tipus': ss.tipus, 'grup': ss.grup,
-                              'motiu': x['motiu'], 'abans (hora)': f'{h_}-{fmt(hm_(h_) + ss.durada)}', 'abans (aula)': a_,
-                              'ara (data)': d2_ if d2_ != d_ else '(la mateixa)', 'ara (hora)': f'{h2_}-{fmt(hm_(h2_) + ss.durada)}',
-                              'ara (aula)': a2_, 'tipus de canvi': x['tipus_canvi'], 'docents': x['afecta_docents'],
-                              'alumnat': x['afecta_alumnat'], 'avisar': x['avisar'], 'id_sessio': x['id_sessio']})
-            st.markdown('**Registre de canvis i avisos (esborranys)**')
-            st.dataframe(pd.DataFrame(filas).sort_values(['data', 'abans (hora)']).reset_index(drop=True), hide_index=True)
+    t_ok = taula_t.dropna().to_dict('records') if usa_t and len(taula_t) else []
+    errors = [f"{r['aula']}: la data d'inici és posterior a la de fi" for r in t_ok if r['des del'] > r['fins al']]
+    for e in errors:
+        st.error(e)
+    if usa_c and fins_c and dia_c >= fins_c:
+        st.error('El termini per recuperar la classe ha de ser posterior al dia en què es cancel·la.')
+        errors.append('termini')
+    res_buit = not t_ok and not (usa_g and grup_sel) and not (usa_c and sid_c)
+    if res_buit:
+        st.info('Afegeix almenys un problema.')
+    if st.button('Resol-ho tot', type='primary', disabled=bool(errors) or res_buit, key='imp_go'):
+        with st.spinner('Buscant la solució i validant-la amb el verificador...'):
+            try:
+                r = api.resol_imprevist_complet(
+                    [{'aula': x['aula'], 'data_ini': x['des del'].isoformat(), 'data_fi': x['fins al'].isoformat()} for x in t_ok],
+                    [{'codi': etiq_g[grup_sel][0], 'grup': etiq_g[grup_sel][1], 'alumnes': nous}] if usa_g and grup_sel else [],
+                    [{'id_sessio': sid_c, 'recuperar_fins': fins_c.isoformat()}] if usa_c and sid_c else [])
+            except Exception as e:
+                st.error(f'No he pogut resoldre-ho: {e}')
+                st.stop()
+        ok = r['veredicte'] != 'NO VALIDA' and not r['sense_solucio']
+        (st.success if ok else st.error)(f"Veredicte del verificador: {r['veredicte']} · {len(r['registre'])} classes afectades")
+        m1, m2, m3 = st.columns(3)
+        m1.metric("Canvis d'aula", r['canvis_aula'])
+        m2.metric("Canvis de dia o hora", r['canvis_franja'])
+        m3.metric('Classes sense solució', len(r['sense_solucio']))
+        if r['sense_solucio']:
+            st.warning('Aquestes classes no han trobat lloc:')
+            st.dataframe(pd.DataFrame(r['sense_solucio']), hide_index=True)
+        regla_de = {}
+        for r_ in r['relaxacions']:
+            for i_ in str(r_['sessions']).split('|'):
+                regla_de[i_] = r_['restriccio']
+        n_exc = sum(1 for x in r['registre'] if x['id_sessio'] in regla_de)
+        QUE2 = {'R1-FIXADA': "Sessió fixada (no s'hauria de moure) que canvia d'aula",
+                'R7-PLAB': "Laboratori PLAB que canvia d'aula",
+                'R1-TORN': 'Sessió fora del seu torn (matí/tarda), heretada del pas anterior'}
+        exc_imp = [r_ for r_ in r['relaxacions'] if r_['restriccio'] != 'R1-TORN']
+        if exc_imp:
+            with st.expander(f"Excepcions a declarar per aquest imprevist ({sum(len(x['sessions'].split('|')) for x in exc_imp)} classes)"):
+                st.caption("Són regles que normalment no es toquen però que aquí s'han hagut d'incomplir perquè l'aula no estava disponible.")
+                st.dataframe(pd.DataFrame([{'regla': x['restriccio'], 'què vol dir': QUE2.get(x['restriccio'], ''),
+                                            'classes': len(x['sessions'].split('|')), 'justificació': x['justificacio']} for x in exc_imp]), hide_index=True)
+        filas = []
+        for x in r['registre']:
+            ss = base2.sessions[x['id_sessio']]
+            d_, h_, a_ = x['de'].split(' ', 2)
+            d2_, h2_, a2_ = x['a'].split(' ', 2)
+            hm_ = lambda h: int(h[:2]) * 60 + int(h[3:])
+            filas.append({'data': d_, 'assignatura': noms_c.get(ss.codi, ss.codi), 'tipus': ss.tipus, 'grup': ss.grup,
+                          'motiu': x['motiu'], 'abans (hora)': f'{h_}-{fmt(hm_(h_) + ss.durada)}', 'abans (aula)': a_,
+                          'ara (data)': d2_ if d2_ != d_ else '(la mateixa)', 'ara (hora)': f'{h2_}-{fmt(hm_(h2_) + ss.durada)}',
+                          'ara (aula)': a2_, 'tipus de canvi': x['tipus_canvi'], 'docents': x['afecta_docents'],
+                          'alumnat': x['afecta_alumnat'], 'avisar': x['avisar'], 'id_sessio': x['id_sessio']})
+        st.markdown('**Registre de canvis i avisos (esborranys)**')
+        st.dataframe(pd.DataFrame(filas).sort_values(['data', 'abans (hora)']).reset_index(drop=True), hide_index=True)
 
 # ---------------------------------------------------------------- horari
 with t_hor:
