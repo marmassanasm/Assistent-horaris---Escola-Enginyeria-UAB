@@ -122,3 +122,31 @@ def valida():
     return {'veredicte': inf.veredicte,
             'recompte': {k: v for k, v in inf.recompte().items() if v['compten'] or v['declarades']},
             'objectius': inf.objectius}
+
+
+# ---------------------------------------------------------------------------------------------
+# Imprevist complet: aules tancades + grups que creixen + sessions cancel·lades, tot alhora
+# ---------------------------------------------------------------------------------------------
+def resol_imprevist_complet(tancades: list[dict], grups: list[dict], cancellades: list[dict]) -> dict:
+    """tancades: [{aula, data_ini, data_fi}], grups: [{codi, grup, alumnes}], cancellades: [{id_sessio, recuperar_fins}].
+    Usa la mateixa logica que el pas 5.3 i valida amb el verificador."""
+    import json
+    import tempfile
+    from agent import imprevist as imp
+    esc = {'nom': 'imprevist-app', 'ficticia': True, 'aules_tancades': tancades,
+           'alumnes': [{'codi': str(g['codi']), 'grup': g['grup'], 'alumnes': int(g['alumnes'])} for g in grups],
+           'cancellades': cancellades}
+    with tempfile.TemporaryDirectory() as tmp:
+        (Path(tmp) / 'escenari.json').write_text(json.dumps(esc), encoding='utf-8')
+        base, ref, est, canvis, sense = imp.resol(PAQUET, Path(tmp), PROPOSTA, SEMESTRE)
+        files = imp.a_fitxers(base, est, ref)
+        rel = imp.relaxacions(base, canvis, files)
+        rels = [Relaxacio(r['restriccio'], frozenset(r['sessions'].split('|')), r['justificacio']) for r in rel]
+        inf = avalua(base, files, rels, referencia=ref)
+        reg = imp.registre(base, canvis, dt.date.today())
+        r0 = _col_loca(base, ref, Informe())
+    n_h = sum(1 for sid in base.ordre if sid in r0 and (est.col[sid].data, est.col[sid].ini) != (r0[sid].data, r0[sid].ini))
+    n_a = sum(1 for sid in base.ordre if sid in r0 and est.col[sid].aula != r0[sid].aula)
+    return {'veredicte': inf.veredicte, 'canvis_franja': n_h, 'canvis_aula': n_a,
+            'relaxacions': rel, 'registre': reg,
+            'sense_solucio': [{'id': (x[0] if isinstance(x[0], str) else ', '.join(x[0])), 'motiu': x[1]} for x in sense]}
