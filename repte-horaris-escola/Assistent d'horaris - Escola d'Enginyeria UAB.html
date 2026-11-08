@@ -1,0 +1,351 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Assistent d&#39;horaris - Escola d&#39;Enginyeria UAB</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Disseny: pàgina d'informe amb navegació lateral fixa, una secció per apartat del repte i xifres en tipus de màquina. */
+:root{
+  --bg:#F4F7F5; --panel:#FFFFFF; --ink:#14211B; --muted:#4D5C54; --line:#D5DDD8;
+  --accent:#1F5C4A; --accent-soft:#DCEBE4; --warn:#8A4B0B; --warn-soft:#F6E7D3; --bar:#1F5C4A; --bar-bg:#E3EAE6;
+  --font-body:'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1713; --panel:#16211C; --ink:#E7EFEA; --muted:#9FB2A8; --line:#2A3A32;
+  --accent:#7CCBA8; --accent-soft:#1D3329; --warn:#E5B069; --warn-soft:#33281A; --bar:#7CCBA8; --bar-bg:#24332B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1713; --panel:#16211C; --ink:#E7EFEA; --muted:#9FB2A8; --line:#2A3A32;
+  --accent:#7CCBA8; --accent-soft:#1D3329; --warn:#E5B069; --warn-soft:#33281A; --bar:#7CCBA8; --bar-bg:#24332B; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;padding-block:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;padding-block:32px 96px}
+nav.toc{position:sticky;top:24px;align-self:start;display:flex;flex-direction:column;gap:2px;font-size:15px}
+nav.toc p{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+nav.toc a{color:var(--muted);text-decoration:none;padding:6px 10px;border-left:2px solid var(--line)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-left-color:var(--accent);outline:none}
+main{display:flex;flex-direction:column;gap:72px;min-width:0}
+section{display:flex;flex-direction:column;gap:20px;scroll-margin-top:24px;min-width:0}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.08;letter-spacing:-.02em;font-weight:700;text-wrap:balance;margin:0}
+h2{font-size:clamp(26px,3.6vw,34px);line-height:1.15;letter-spacing:-.01em;font-weight:700;text-wrap:balance;margin:0}
+h3{font-size:19px;margin:0;font-weight:600}
+p{margin:0;max-width:68ch}
+.kicker{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0}
+.lead{font-size:20px;color:var(--muted)}
+.answer{background:var(--accent-soft);border-radius:10px;padding:22px 24px;display:flex;flex-direction:column;gap:6px;max-width:none}
+.answer strong{font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat b{font-family:var(--font-mono);font-weight:500;font-size:34px;line-height:1.1;color:var(--accent)}
+.stat span{font-size:15px;color:var(--muted)}
+.step{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}
+.step dl{margin:0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px 20px}
+.step dt{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.step dd{margin:0}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:13px;padding:3px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.bars{display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.bars h3{font-size:16px}
+.row{display:grid;grid-template-columns:130px minmax(0,1fr) 64px;gap:12px;align-items:center;font-size:15px}
+.row i{display:block;height:14px;background:var(--bar-bg);border-radius:3px;position:relative}
+.row i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--bar);border-radius:3px}
+.row.alt i::after{background:var(--warn)}
+.row b{font-family:var(--font-mono);font-weight:500;text-align:right}
+.note{font-size:14px;color:var(--muted)}
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:16px 0;border-bottom:1px solid var(--line)}
+ol.steps li::before{content:counter(s);font-family:var(--font-mono);color:var(--accent);font-size:20px}
+ol.steps li div{display:flex;flex-direction:column;gap:2px}
+ol.steps li span{color:var(--muted);font-size:15px}
+.tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:560px}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--font-mono);white-space:nowrap}
+.finds{display:flex;flex-direction:column;gap:12px}
+.find{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.find .fn{font-family:var(--font-mono);font-size:24px;color:var(--accent)}
+.find>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.find .big{font-family:var(--font-mono);font-size:24px;color:var(--accent);max-width:none}
+.find .how{font-size:15px;color:var(--muted)}
+.heatblock{display:flex;flex-direction:column;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;min-width:0}
+.heatblock h3{font-size:16px}
+.heatscroll{overflow-x:auto}
+.heat{display:flex;flex-direction:column;gap:2px;min-width:600px}
+.hr{display:grid;grid-template-columns:20px repeat(25,minmax(0,1fr));gap:2px;align-items:center}
+.hr b{font-family:var(--font-mono);font-size:12px;color:var(--muted);font-weight:500}
+.hr .c{font-family:var(--font-mono);font-size:11px;text-align:center;padding:5px 0;border-radius:2px;color:var(--ink);background:color-mix(in srgb,var(--accent) calc(var(--v)*100%),var(--bar-bg))}
+.hr .c.hi{color:var(--panel)}
+.hr .c.over{background:var(--warn);color:var(--panel)}
+.hl{font-family:var(--font-mono);font-size:10px;color:var(--muted);overflow:visible;white-space:nowrap}
+.btn{display:inline-block;align-self:flex-start;background:var(--accent);color:var(--panel);text-decoration:none;font-weight:600;padding:10px 18px;border-radius:99px}
+.btn:hover{opacity:.9}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.tab{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tab p{font-size:15px;color:var(--muted)}
+.themebtn{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.themebtn:focus-visible,nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:20px}
+@media (max-width:860px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:24px}
+  nav.toc{position:static;flex-direction:row;flex-wrap:wrap;gap:6px}
+  nav.toc p{width:100%}
+  nav.toc a{border:1px solid var(--line);border-radius:99px;padding:4px 12px}
+  .step dl{grid-template-columns:minmax(0,1fr);gap:2px}
+  .row{grid-template-columns:96px minmax(0,1fr) 56px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Seccions">
+  
+</nav>
+
+<main>
+<section id="resum">
+  <p class="kicker">UAB THE HACK! 2026 · Escola d’Enginyeria</p>
+  <h1> REPTE DE L'ESCOLA: Horaris i espais 2027-28 </h1>
+</section>
+
+<section id="repte">
+  <p class="kicker">1 · El repte</p>
+  <h2>De què va el projecte</h2>
+  <p>L’Escola d’Enginyeria de la UAB ha de fer els horaris del curs 2027-28. Avui es fan en bona part a mà i és molt complicat: 8 graus, 3 màsters, 56 espais (aules, laboratoris i seminaris) i prop de 17.000 classes.</p>
+  <div class="grid">
+    <div class="stat"><b>17.026</b><span>sessions de classe</span></div>
+    <div class="stat"><b>56</b><span>aules, laboratoris i seminaris</span></div>
+    <div class="stat"><b>11</b><span>plans d'estudis: 8 graus i 3 màsters</span></div>
+  </div>
+  <p>Les dades són del curs actual (2026-27), l’únic que és real. Les fem servir de model: suposem que el curs vinent hi haurà les mateixes assignatures, grups i hores. Treballem el 2n semestre, que és el més incomplet: el 74 % de les seves classes no tenen aula assignada.</p>
+  <h3>Què ens donen</h3>
+  <ul>
+    <li>Les classes: assignatura, grup, dia, hora, durada, alumnes, professorat i aula actual.</li>
+    <li>Les 56 aules, amb el tipus i el nombre de places.</li>
+    <li>El calendari amb festius i dies sense classe, i l’horari d’avui.</li>
+    <li>El verificador: un corrector automàtic que diu «vàlid» o «no vàlid» i quines normes es trenquen. El jurat fa servir el mateix.</li>
+  </ul>
+  <h3>Les normes que cal complir</h3>
+  <ul>
+    <li>Les classes han d’anar dins de les finestres de 8.30 a 14.30 i de 14.30 a 21.00, l’hora en què tanca l’edifici.</li>
+    <li>Les classes de 1r i 2n han de ser al matí i de 3r, 4t, 5è, dobles graus i màsters a la tarda. </li>
+    <li>Els grups de GEI i GEET+GEST de 1r i 2n no es toquen. </li>
+    <li>Només es poden fer servir aules de l’aulari, del tipus que toca i amb prou places. Les classes que avui es fan a les aules J s’han de portar a l’aulari.</li>
+    <li>Cap aula, professor ni alumne en dues classes alhora. Una classe compartida compta una sola vegada.</li>
+    <li>No es treu ni s’escurça cap classe: totes es fan, a la seva setmana i amb aula.</li>
+    <li>Els laboratoris PLAB no es toquen, ni l’horari ni l’aula. Una TE o un PAUL no pot coincidir amb un PLAB de la mateixa assignatura .</li>
+    <li>Han de quedar dues aules ordinàries lliures a cada franja.</li>
+    <li>Objectius: poques hores mortes, pocs desplaçaments i pocs canvis respecte de l’horari d’avui.</li>
+    <li>Distingir «no hem trobat un horari vàlid» de «hem demostrat que no existeix»; tota relaxació es declara.</li>
+  </ul>
+  <p>Els incompliments que ja hi havia a l’horari d’avui i que no es poden evitar el verificador els marca com a «heretats» i no compten.</p>
+</section>
+
+<section id="nivell1">
+  <p class="kicker">Nivell 1 </p>
+  <h2>Anàlisi de les dades: com s’usen avui els espais i hi cap el model nou?</h2>
+  <h3>Les troballes més importants</h3>
+  <div class="finds">
+    <article class="find"><span class="fn">1</span><div>
+      <b>El 42 % de les classes del 2n semestre són al torn que no els toca</b>
+      <p class="big">3.246 de 7.739</p>
+      <p class="how">Comparem l’hora d’inici de cada classe amb el torn que li toca segons el model nou. 1.238 són fixades i no es poden moure; 2.008 sí.</p>
+      <div class="tablewrap"><table>
+        <tr><th>Curs</th><th>Classes</th><th>Fora de torn</th><th>%</th></tr>
+        <tr><td>GEI 3r</td><td class="n">1.381</td><td class="n">1.232</td><td class="n">89,2</td></tr>
+        <tr><td>GEI 4t</td><td class="n">1.217</td><td class="n">1.125</td><td class="n">92,4</td></tr>
+        <tr><td>GEST 3r</td><td class="n">527</td><td class="n">521</td><td class="n">98,9</td></tr>
+        <tr><td>GEET 3r</td><td class="n">238</td><td class="n">232</td><td class="n">97,5</td></tr>
+        <tr><td>GEQ 3r</td><td class="n">163</td><td class="n">163</td><td class="n">100</td></tr>
+        <tr><td>GCIS 2n</td><td class="n">124</td><td class="n">124</td><td class="n">100</td></tr>
+        <tr><td>GIA 1r</td><td class="n">110</td><td class="n">110</td><td class="n">100</td></tr>
+        <tr><td>GEI 2n</td><td class="n">1.168</td><td class="n">406</td><td class="n">34,8</td></tr>
+        <tr><td>GEI 1r</td><td class="n">998</td><td class="n">328</td><td class="n">32,9</td></tr>
+      </table></div>
+      <p class="how">Una classe de doble titulació compta a les dues titulacions. 3r i 4t de GEI passen del matí a la tarda; GCIS 2n, GIA 1r i GIA 2n passen del tot al matí.</p></div></article>
+    <article class="find"><span class="fn">2</span><div>
+      <b>Hi ha prou aules al matí, amb marge</b>
+      <p class="big">330 h de 570 · 58 %</p>
+      <p class="how">Hores-aula setmanals de les classes de matí al model nou, entre l’oferta: 19 aules × 6 h × 5 dies. Si tot es pogués moure seria el 68 %, que és el cas pitjor. Només 25 hores setmanals pugen al matí i 150 baixen a la tarda. Només amb les classes fixades queden com a mínim 9 de 19 aules lliures a cada franja del matí.</p>
+      <p class="how">La mida de les aules no és el problema: només 1 classe de matí té més de 117 alumnes, i la demanda d’aules grans és del 2 al 15 % de l’oferta.</p></div></article>
+    <article class="find"><span class="fn">3</span><div>
+      <b>Avui el matí està saturat i la tarda està buida</b>
+      <p class="big">20 classes alhora al matí, per a 19 aules</p>
+      <p class="how">Comptem les classes simultànies a cada franja de mitja hora de la setmana tipus (8 de febrer). La tarda arriba només a 13 classes. Amb el model nou el pic del matí baixa a 16 i el de la tarda puja a 17.</p>
+      <div class="tablewrap"><table>
+        <tr><th>Franja</th><th>Oferta</th><th>Avui</th><th>Model nou</th></tr>
+        <tr><td>Matí (8.30 a 14.30)</td><td class="n">570 h</td><td class="n">459 h · 80 %</td><td class="n">330 h · 58 %</td></tr>
+        <tr><td>Tarda (14.30 a 21.00)</td><td class="n">618 h</td><td class="n">178 h · 29 %</td><td class="n">288 h · 47 %</td></tr>
+      </table></div>
+      <p class="how">Cada casella és el nombre de classes alhora en una franja de mitja hora. El límit són les 19 aules ordinàries; les caselles en taronja el superen.</p>
+      <div class="heatblock" role="group" aria-label="Avui: classes alhora (límit 19)"><h3>Avui: classes alhora (límit 19)</h3><div class="heatscroll"><div class="heat"><div class="hr hh"><b></b><span class="hl"></span><span class="hl">9:00</span><span class="hl"></span><span class="hl">10:00</span><span class="hl"></span><span class="hl">11:00</span><span class="hl"></span><span class="hl">12:00</span><span class="hl"></span><span class="hl">13:00</span><span class="hl"></span><span class="hl">14:00</span><span class="hl"></span><span class="hl">15:00</span><span class="hl"></span><span class="hl">16:00</span><span class="hl"></span><span class="hl">17:00</span><span class="hl"></span><span class="hl">18:00</span><span class="hl"></span><span class="hl">19:00</span><span class="hl"></span><span class="hl">20:00</span><span class="hl"></span></div><div class="hr"><b>L</b><span class="c hi" style="--v:0.68" title="L 8:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="L 9:00: 13 classes">13</span><span class="c hi" style="--v:0.63" title="L 9:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="L 10:00: 12 classes">12</span><span class="c hi" style="--v:0.84" title="L 10:30: 16 classes">16</span><span class="c hi" style="--v:0.84" title="L 11:00: 16 classes">16</span><span class="c hi" style="--v:0.84" title="L 11:30: 16 classes">16</span><span class="c hi" style="--v:0.84" title="L 12:00: 16 classes">16</span><span class="c hi" style="--v:0.79" title="L 12:30: 15 classes">15</span><span class="c hi" style="--v:0.79" title="L 13:00: 15 classes">15</span><span class="c hi" style="--v:0.63" title="L 13:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="L 14:00: 12 classes">12</span><span class="c" style="--v:0.00" title="L 14:30: 0 classes">0</span><span class="c" style="--v:0.53" title="L 15:00: 10 classes">10</span><span class="c" style="--v:0.53" title="L 15:30: 10 classes">10</span><span class="c" style="--v:0.53" title="L 16:00: 10 classes">10</span><span class="c" style="--v:0.53" title="L 16:30: 10 classes">10</span><span class="c" style="--v:0.47" title="L 17:00: 9 classes">9</span><span class="c" style="--v:0.47" title="L 17:30: 9 classes">9</span><span class="c" style="--v:0.21" title="L 18:00: 4 classes">4</span><span class="c" style="--v:0.21" title="L 18:30: 4 classes">4</span><span class="c" style="--v:0.05" title="L 19:00: 1 classes">1</span><span class="c" style="--v:0.05" title="L 19:30: 1 classes">1</span><span class="c" style="--v:0.00" title="L 20:00: 0 classes">0</span><span class="c" style="--v:0.00" title="L 20:30: 0 classes">0</span></div><div class="hr"><b>M</b><span class="c hi" style="--v:0.68" title="M 8:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="M 9:00: 13 classes">13</span><span class="c hi" style="--v:0.68" title="M 9:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="M 10:00: 13 classes">13</span><span class="c over" style="--v:1.00" title="M 10:30: 20 classes">20</span><span class="c over" style="--v:1.00" title="M 11:00: 20 classes">20</span><span class="c hi" style="--v:0.95" title="M 11:30: 18 classes">18</span><span class="c hi" style="--v:0.95" title="M 12:00: 18 classes">18</span><span class="c hi" style="--v:0.84" title="M 12:30: 16 classes">16</span><span class="c hi" style="--v:0.84" title="M 13:00: 16 classes">16</span><span class="c hi" style="--v:0.89" title="M 13:30: 17 classes">17</span><span class="c hi" style="--v:0.89" title="M 14:00: 17 classes">17</span><span class="c" style="--v:0.00" title="M 14:30: 0 classes">0</span><span class="c hi" style="--v:0.58" title="M 15:00: 11 classes">11</span><span class="c hi" style="--v:0.58" title="M 15:30: 11 classes">11</span><span class="c hi" style="--v:0.63" title="M 16:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="M 16:30: 12 classes">12</span><span class="c" style="--v:0.53" title="M 17:00: 10 classes">10</span><span class="c" style="--v:0.53" title="M 17:30: 10 classes">10</span><span class="c" style="--v:0.42" title="M 18:00: 8 classes">8</span><span class="c" style="--v:0.42" title="M 18:30: 8 classes">8</span><span class="c" style="--v:0.11" title="M 19:00: 2 classes">2</span><span class="c" style="--v:0.05" title="M 19:30: 1 classes">1</span><span class="c" style="--v:0.05" title="M 20:00: 1 classes">1</span><span class="c" style="--v:0.00" title="M 20:30: 0 classes">0</span></div><div class="hr"><b>X</b><span class="c hi" style="--v:0.84" title="X 8:30: 16 classes">16</span><span class="c hi" style="--v:0.84" title="X 9:00: 16 classes">16</span><span class="c hi" style="--v:0.89" title="X 9:30: 17 classes">17</span><span class="c hi" style="--v:0.89" title="X 10:00: 17 classes">17</span><span class="c hi" style="--v:0.84" title="X 10:30: 16 classes">16</span><span class="c hi" style="--v:0.84" title="X 11:00: 16 classes">16</span><span class="c hi" style="--v:0.79" title="X 11:30: 15 classes">15</span><span class="c hi" style="--v:0.79" title="X 12:00: 15 classes">15</span><span class="c hi" style="--v:0.68" title="X 12:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 13:00: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 13:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 14:00: 13 classes">13</span><span class="c" style="--v:0.00" title="X 14:30: 0 classes">0</span><span class="c hi" style="--v:0.68" title="X 15:00: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 15:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 16:00: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 16:30: 13 classes">13</span><span class="c hi" style="--v:0.58" title="X 17:00: 11 classes">11</span><span class="c hi" style="--v:0.58" title="X 17:30: 11 classes">11</span><span class="c" style="--v:0.53" title="X 18:00: 10 classes">10</span><span class="c" style="--v:0.53" title="X 18:30: 10 classes">10</span><span class="c" style="--v:0.00" title="X 19:00: 0 classes">0</span><span class="c" style="--v:0.00" title="X 19:30: 0 classes">0</span><span class="c" style="--v:0.00" title="X 20:00: 0 classes">0</span><span class="c" style="--v:0.00" title="X 20:30: 0 classes">0</span></div><div class="hr"><b>J</b><span class="c hi" style="--v:0.79" title="J 8:30: 15 classes">15</span><span class="c hi" style="--v:0.79" title="J 9:00: 15 classes">15</span><span class="c hi" style="--v:0.68" title="J 9:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="J 10:00: 13 classes">13</span><span class="c hi" style="--v:0.89" title="J 10:30: 17 classes">17</span><span class="c hi" style="--v:0.89" title="J 11:00: 17 classes">17</span><span class="c hi" style="--v:0.89" title="J 11:30: 17 classes">17</span><span class="c hi" style="--v:0.89" title="J 12:00: 17 classes">17</span><span class="c hi" style="--v:0.89" title="J 12:30: 17 classes">17</span><span class="c hi" style="--v:0.89" title="J 13:00: 17 classes">17</span><span class="c hi" style="--v:0.89" title="J 13:30: 17 classes">17</span><span class="c hi" style="--v:0.95" title="J 14:00: 18 classes">18</span><span class="c" style="--v:0.05" title="J 14:30: 1 classes">1</span><span class="c" style="--v:0.47" title="J 15:00: 9 classes">9</span><span class="c" style="--v:0.47" title="J 15:30: 9 classes">9</span><span class="c" style="--v:0.47" title="J 16:00: 9 classes">9</span><span class="c" style="--v:0.47" title="J 16:30: 9 classes">9</span><span class="c" style="--v:0.26" title="J 17:00: 5 classes">5</span><span class="c" style="--v:0.26" title="J 17:30: 5 classes">5</span><span class="c" style="--v:0.11" title="J 18:00: 2 classes">2</span><span class="c" style="--v:0.11" title="J 18:30: 2 classes">2</span><span class="c" style="--v:0.00" title="J 19:00: 0 classes">0</span><span class="c" style="--v:0.00" title="J 19:30: 0 classes">0</span><span class="c" style="--v:0.00" title="J 20:00: 0 classes">0</span><span class="c" style="--v:0.00" title="J 20:30: 0 classes">0</span></div><div class="hr"><b>V</b><span class="c hi" style="--v:0.95" title="V 8:30: 18 classes">18</span><span class="c hi" style="--v:0.95" title="V 9:00: 18 classes">18</span><span class="c hi" style="--v:0.89" title="V 9:30: 17 classes">17</span><span class="c hi" style="--v:0.89" title="V 10:00: 17 classes">17</span><span class="c hi" style="--v:0.79" title="V 10:30: 15 classes">15</span><span class="c hi" style="--v:0.79" title="V 11:00: 15 classes">15</span><span class="c hi" style="--v:0.95" title="V 11:30: 18 classes">18</span><span class="c hi" style="--v:0.95" title="V 12:00: 18 classes">18</span><span class="c hi" style="--v:0.58" title="V 12:30: 11 classes">11</span><span class="c hi" style="--v:0.58" title="V 13:00: 11 classes">11</span><span class="c hi" style="--v:0.58" title="V 13:30: 11 classes">11</span><span class="c hi" style="--v:0.58" title="V 14:00: 11 classes">11</span><span class="c" style="--v:0.00" title="V 14:30: 0 classes">0</span><span class="c" style="--v:0.37" title="V 15:00: 7 classes">7</span><span class="c" style="--v:0.37" title="V 15:30: 7 classes">7</span><span class="c" style="--v:0.32" title="V 16:00: 6 classes">6</span><span class="c" style="--v:0.32" title="V 16:30: 6 classes">6</span><span class="c" style="--v:0.47" title="V 17:00: 9 classes">9</span><span class="c" style="--v:0.47" title="V 17:30: 9 classes">9</span><span class="c" style="--v:0.42" title="V 18:00: 8 classes">8</span><span class="c" style="--v:0.42" title="V 18:30: 8 classes">8</span><span class="c" style="--v:0.05" title="V 19:00: 1 classes">1</span><span class="c" style="--v:0.05" title="V 19:30: 1 classes">1</span><span class="c" style="--v:0.00" title="V 20:00: 0 classes">0</span><span class="c" style="--v:0.00" title="V 20:30: 0 classes">0</span></div></div></div></div>
+      <div class="heatblock" role="group" aria-label="Model nou: classes alhora (límit 19)"><h3>Model nou: classes alhora (límit 19)</h3><div class="heatscroll"><div class="heat"><div class="hr hh"><b></b><span class="hl"></span><span class="hl">9:00</span><span class="hl"></span><span class="hl">10:00</span><span class="hl"></span><span class="hl">11:00</span><span class="hl"></span><span class="hl">12:00</span><span class="hl"></span><span class="hl">13:00</span><span class="hl"></span><span class="hl">14:00</span><span class="hl"></span><span class="hl">15:00</span><span class="hl"></span><span class="hl">16:00</span><span class="hl"></span><span class="hl">17:00</span><span class="hl"></span><span class="hl">18:00</span><span class="hl"></span><span class="hl">19:00</span><span class="hl"></span><span class="hl">20:00</span><span class="hl"></span></div><div class="hr"><b>L</b><span class="c hi" style="--v:0.63" title="L 8:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="L 9:00: 12 classes">12</span><span class="c hi" style="--v:0.58" title="L 9:30: 11 classes">11</span><span class="c hi" style="--v:0.58" title="L 10:00: 11 classes">11</span><span class="c hi" style="--v:0.79" title="L 10:30: 15 classes">15</span><span class="c hi" style="--v:0.79" title="L 11:00: 15 classes">15</span><span class="c" style="--v:0.53" title="L 11:30: 10 classes">10</span><span class="c" style="--v:0.53" title="L 12:00: 10 classes">10</span><span class="c" style="--v:0.42" title="L 12:30: 8 classes">8</span><span class="c" style="--v:0.42" title="L 13:00: 8 classes">8</span><span class="c" style="--v:0.37" title="L 13:30: 7 classes">7</span><span class="c" style="--v:0.37" title="L 14:00: 7 classes">7</span><span class="c" style="--v:0.00" title="L 14:30: 0 classes">0</span><span class="c" style="--v:0.53" title="L 15:00: 10 classes">10</span><span class="c" style="--v:0.53" title="L 15:30: 10 classes">10</span><span class="c hi" style="--v:0.74" title="L 16:00: 14 classes">14</span><span class="c hi" style="--v:0.74" title="L 16:30: 14 classes">14</span><span class="c hi" style="--v:0.58" title="L 17:00: 11 classes">11</span><span class="c hi" style="--v:0.58" title="L 17:30: 11 classes">11</span><span class="c" style="--v:0.37" title="L 18:00: 7 classes">7</span><span class="c" style="--v:0.37" title="L 18:30: 7 classes">7</span><span class="c" style="--v:0.26" title="L 19:00: 5 classes">5</span><span class="c" style="--v:0.26" title="L 19:30: 5 classes">5</span><span class="c" style="--v:0.21" title="L 20:00: 4 classes">4</span><span class="c" style="--v:0.21" title="L 20:30: 4 classes">4</span></div><div class="hr"><b>M</b><span class="c hi" style="--v:0.63" title="M 8:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="M 9:00: 12 classes">12</span><span class="c hi" style="--v:0.58" title="M 9:30: 11 classes">11</span><span class="c hi" style="--v:0.58" title="M 10:00: 11 classes">11</span><span class="c hi" style="--v:0.84" title="M 10:30: 16 classes">16</span><span class="c hi" style="--v:0.84" title="M 11:00: 16 classes">16</span><span class="c hi" style="--v:0.74" title="M 11:30: 14 classes">14</span><span class="c hi" style="--v:0.74" title="M 12:00: 14 classes">14</span><span class="c hi" style="--v:0.58" title="M 12:30: 11 classes">11</span><span class="c hi" style="--v:0.58" title="M 13:00: 11 classes">11</span><span class="c" style="--v:0.53" title="M 13:30: 10 classes">10</span><span class="c" style="--v:0.53" title="M 14:00: 10 classes">10</span><span class="c" style="--v:0.00" title="M 14:30: 0 classes">0</span><span class="c hi" style="--v:0.63" title="M 15:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="M 15:30: 12 classes">12</span><span class="c hi" style="--v:0.74" title="M 16:00: 14 classes">14</span><span class="c hi" style="--v:0.74" title="M 16:30: 14 classes">14</span><span class="c hi" style="--v:0.63" title="M 17:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="M 17:30: 12 classes">12</span><span class="c" style="--v:0.47" title="M 18:00: 9 classes">9</span><span class="c" style="--v:0.47" title="M 18:30: 9 classes">9</span><span class="c" style="--v:0.26" title="M 19:00: 5 classes">5</span><span class="c" style="--v:0.26" title="M 19:30: 5 classes">5</span><span class="c" style="--v:0.42" title="M 20:00: 8 classes">8</span><span class="c" style="--v:0.42" title="M 20:30: 8 classes">8</span></div><div class="hr"><b>X</b><span class="c hi" style="--v:0.63" title="X 8:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 9:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 9:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 10:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 10:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 11:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 11:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 12:00: 12 classes">12</span><span class="c" style="--v:0.37" title="X 12:30: 7 classes">7</span><span class="c" style="--v:0.37" title="X 13:00: 7 classes">7</span><span class="c" style="--v:0.37" title="X 13:30: 7 classes">7</span><span class="c" style="--v:0.37" title="X 14:00: 7 classes">7</span><span class="c" style="--v:0.00" title="X 14:30: 0 classes">0</span><span class="c hi" style="--v:0.84" title="X 15:00: 16 classes">16</span><span class="c hi" style="--v:0.84" title="X 15:30: 16 classes">16</span><span class="c hi" style="--v:0.89" title="X 16:00: 17 classes">17</span><span class="c hi" style="--v:0.89" title="X 16:30: 17 classes">17</span><span class="c hi" style="--v:0.63" title="X 17:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="X 17:30: 12 classes">12</span><span class="c hi" style="--v:0.68" title="X 18:00: 13 classes">13</span><span class="c hi" style="--v:0.68" title="X 18:30: 13 classes">13</span><span class="c" style="--v:0.21" title="X 19:00: 4 classes">4</span><span class="c" style="--v:0.21" title="X 19:30: 4 classes">4</span><span class="c" style="--v:0.21" title="X 20:00: 4 classes">4</span><span class="c" style="--v:0.21" title="X 20:30: 4 classes">4</span></div><div class="hr"><b>J</b><span class="c hi" style="--v:0.58" title="J 8:30: 11 classes">11</span><span class="c hi" style="--v:0.58" title="J 9:00: 11 classes">11</span><span class="c" style="--v:0.47" title="J 9:30: 9 classes">9</span><span class="c" style="--v:0.47" title="J 10:00: 9 classes">9</span><span class="c hi" style="--v:0.63" title="J 10:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="J 11:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="J 11:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="J 12:00: 12 classes">12</span><span class="c" style="--v:0.53" title="J 12:30: 10 classes">10</span><span class="c" style="--v:0.53" title="J 13:00: 10 classes">10</span><span class="c" style="--v:0.53" title="J 13:30: 10 classes">10</span><span class="c" style="--v:0.53" title="J 14:00: 10 classes">10</span><span class="c" style="--v:0.00" title="J 14:30: 0 classes">0</span><span class="c hi" style="--v:0.58" title="J 15:00: 11 classes">11</span><span class="c hi" style="--v:0.58" title="J 15:30: 11 classes">11</span><span class="c hi" style="--v:0.63" title="J 16:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="J 16:30: 12 classes">12</span><span class="c" style="--v:0.53" title="J 17:00: 10 classes">10</span><span class="c" style="--v:0.53" title="J 17:30: 10 classes">10</span><span class="c" style="--v:0.37" title="J 18:00: 7 classes">7</span><span class="c" style="--v:0.37" title="J 18:30: 7 classes">7</span><span class="c" style="--v:0.42" title="J 19:00: 8 classes">8</span><span class="c" style="--v:0.42" title="J 19:30: 8 classes">8</span><span class="c" style="--v:0.32" title="J 20:00: 6 classes">6</span><span class="c" style="--v:0.32" title="J 20:30: 6 classes">6</span></div><div class="hr"><b>V</b><span class="c hi" style="--v:0.74" title="V 8:30: 14 classes">14</span><span class="c hi" style="--v:0.74" title="V 9:00: 14 classes">14</span><span class="c hi" style="--v:0.63" title="V 9:30: 12 classes">12</span><span class="c hi" style="--v:0.63" title="V 10:00: 12 classes">12</span><span class="c hi" style="--v:0.68" title="V 10:30: 13 classes">13</span><span class="c hi" style="--v:0.68" title="V 11:00: 13 classes">13</span><span class="c hi" style="--v:0.79" title="V 11:30: 15 classes">15</span><span class="c hi" style="--v:0.79" title="V 12:00: 15 classes">15</span><span class="c" style="--v:0.32" title="V 12:30: 6 classes">6</span><span class="c" style="--v:0.32" title="V 13:00: 6 classes">6</span><span class="c" style="--v:0.37" title="V 13:30: 7 classes">7</span><span class="c" style="--v:0.37" title="V 14:00: 7 classes">7</span><span class="c" style="--v:0.00" title="V 14:30: 0 classes">0</span><span class="c" style="--v:0.42" title="V 15:00: 8 classes">8</span><span class="c" style="--v:0.42" title="V 15:30: 8 classes">8</span><span class="c" style="--v:0.47" title="V 16:00: 9 classes">9</span><span class="c" style="--v:0.47" title="V 16:30: 9 classes">9</span><span class="c hi" style="--v:0.63" title="V 17:00: 12 classes">12</span><span class="c hi" style="--v:0.63" title="V 17:30: 12 classes">12</span><span class="c hi" style="--v:0.68" title="V 18:00: 13 classes">13</span><span class="c hi" style="--v:0.68" title="V 18:30: 13 classes">13</span><span class="c hi" style="--v:0.58" title="V 19:00: 11 classes">11</span><span class="c hi" style="--v:0.58" title="V 19:30: 11 classes">11</span><span class="c" style="--v:0.21" title="V 20:00: 4 classes">4</span><span class="c" style="--v:0.21" title="V 20:30: 4 classes">4</span></div></div></div></div></div></article>
+    <article class="find"><span class="fn">4</span><div>
+      <b>El 74 % de les classes no tenen aula a les dades, així que l’ocupació real és una cota baixa</b>
+      <p class="big">5.722 de 7.739</p>
+      <p class="how">Classes del 2n semestre sense aula a la partida: 919 laboratoris, 262 de dobles titulacions i 4.541 per assignar. Amb les que sí que en tenen, Q3/0013 és la més carregada (90 %) i 7 de les 21 aules ordinàries no en tenen cap la setmana tipus. Per tipus d’espai l’ocupació és del 88 % a informàtica, 24 % a les aules docents, 5 % als laboratoris i 2 % als seminaris.</p></div></article>
+    <article class="find"><span class="fn">5</span><div>
+      <b>101 classes tenen més alumnes que places a l’aula d’avui</b>
+      <p class="big">58 fixades · 43 corregibles</p>
+      <p class="how">Comparem els alumnes de cada classe amb la capacitat de la seva aula. L’excedent mitjà és de 3,7 alumnes i el màxim de 8 (TE/21 de GEQ 1r: 125 alumnes a Q4/0011, que en té 117). Les 58 fixades el verificador les dona per heretades.</p></div></article>
+  </div>
+</section>
+
+<section id="s51">
+  <p class="kicker">5.1 </p>
+  <h2>Aules: posar-ne a les classes que no en tenen</h2>
+  <p>Del 2n semestre hi ha 7.739 classes. Abans només 2.017 tenien aula; amb la proposta en tenen 6.558 (85 %). El fitxer que ho recull és <b>proposta-aules.csv</b>, i el corrector oficial el dona com a vàlid.</p>
+  <div class="grid">
+    <div class="stat"><b>4.541</b><span>classes que han rebut aula</span></div>
+    <div class="stat"><b>0</b><span>classes que canvien de dia o d’hora</span></div>
+    <div class="stat"><b>97</b><span>classes que ja tenien aula i l’han hagut de canviar (1,3 % del total)</span></div>
+    <div class="stat"><b>31</b><span>aules diferents fan servir les noves assignacions</span></div>
+  </div>
+  <h3>Quines classes han rebut aula</h3>
+  <div class="tablewrap"><table>
+    <tr><th>Tipus de classe</th><th>Classes</th><th>Què és</th></tr>
+    <tr><td>Problemes (PAUL)</td><td class="n">2.816</td><td>Classes en grups més petits per fer exercicis.</td></tr>
+    <tr><td>Teoria (TE)</td><td class="n">1.652</td><td>Classes magistrals amb el grup sencer.</td></tr>
+    <tr><td>Seminaris (SEM)</td><td class="n">73</td><td>Sessions de grup reduït.</td></tr>
+  </table></div>
+  <p>Les aules triades són sobretot aules docents (2.960 classes), seminaris (863), aules d’informàtica (523) i laboratoris docents (195). Les més usades són Q3/0009, Q2/1003 i Q1/0007, amb unes 300 classes cadascuna.</p>
+  <p>A totes les classes que tenen dada d’alumnes (4.385 de les 4.541 noves) l’aula té prou places, i de mitjana s’omple al 82 % de la capacitat.</p>
+  <h3>Les classes que queden sense aula</h3>
+  <p>No totes poden tenir aula, i és així per disseny:</p>
+  <ul>
+    <li><b>919 laboratoris (PLAB):</b> el reglament diu que no es toquen, ni l’horari ni l’aula.</li>
+    <li><b>262 classes de dobles titulacions (grups 5xx):</b> estan marcades «sense espai» a les dades i no tenen aula assignada.</li>
+  </ul>
+  <p>En total 1.181 classes, que són les que el verificador no exigeix tractar. Les 41 de problemes i 221 de teoria que hi ha dins d’aquest recompte són les dobles titulacions.</p>
+  <h3>Què hem mogut de les que ja tenien aula</h3>
+  <p>Hem respectat les classes fixades: cap de les que tenen l’aula bloquejada ha canviat. Les classes que han canviat d’aula són de teoria i de problemes, i les aules d’origen que més n’han perdut són Q6/1012 (54), Q4/0011 (29) i Q3/0003 (28). El corrector també confirma que no hi ha cap canvi de franja horària (0) i que només hi ha 17 desplaçaments d’edifici.</p>
+  
+</section>
+
+<section id="s52">
+  <p class="kicker">5.2 </p>
+  <h2>Torns nous: 1r i 2n al matí, la resta a la tarda</h2>
+  <div class="step">
+    <dl>
+      <dt>Resultat</dt><dd><span class="tag">Vàlid amb excepcions declarades</span> 2.005 classes de 7.739 (26 %) canvien de dia o hora. Al pic del matí hi ha 15 de 19 aules ordinàries ocupades i, al de la tarda, 13 de 19. </dd>
+    </dl>
+  </div>
+  <div class="bars" role="group" aria-label="Classes que canvien per curs">
+    <h3>Qui es mou més</h3>
+    <div class="row"><span>GEI 3r</span><i style="--w:64%"></i><b>882</b></div>
+    <div class="row"><span>GEI 4t</span><i style="--w:64%"></i><b>775</b></div>
+    <div class="row"><span>GEST 3r</span><i style="--w:94%"></i><b>495</b></div>
+    <div class="row"><span>GEET 3r</span><i style="--w:87%"></i><b>207</b></div>
+    <div class="row"><span>GEQ 3r</span><i style="--w:100%"></i><b>163</b></div>
+  </div>
+  <h3>Les excepcions que no han pogut complir la regla del torn: </h3>
+  <div class="tablewrap"><table>
+    <tr><th>Qui</th><th>Classes</th><th>Per què</th></tr>
+    <tr><td>GEI 1r i 2n</td><td class="n">458</td><td>Avui són a la tarda. El reglament diu que aquests grups no es toquen, així que es queden on són.</td></tr>
+    <tr><td>Doble titulació TE/51</td><td class="n">2</td><td>El 31/05/2027 és l’únic dia lectiu d’aquella setmana i no es pot canviar de dia. Totes les hores de tarda d’aquell dia coincideixen amb el mateix professor o alumnat.</td></tr>
+    <tr><td>Setmana d’avaluació</td><td class="n">1</td><td>Només es pot canviar l’hora, no el dia, i dins del torn no queda cap hora lliure de solapaments.</td></tr>
+  </table></div>
+</section>
+
+<section id="s53">
+  <p class="kicker">5.3 </p>
+  <h2>Imprevist: quatre problemes alhora</h2>
+  <div class="step">
+    <dl>
+      <dt>Què hem fet</dt><dd>Per a cada classe afectada, el programa busca primer una aula lliure el mateix dia i a la mateixa hora. Només si no n’hi ha cap, mou la classe. Després ho comprova tot amb el verificador oficial i redacta el registre de canvis i a qui cal avisar. No envia res.</dd>
+      <dt>Resultat</dt><dd><span class="tag warn">Vàlid amb excepcions declarades</span> 59 classes afectades: 58 canvien només d’aula i 1 es recupera un altre dia. Cap classe canvia d’hora ni de dia, a part de la recuperada. Totes tenen aula nova i no queda cap classe sense solució.</dd>
+    </dl>
+  </div>
+
+  <h3>Els quatre problemes i com s’ha resolt cadascun</h3>
+  <div class="finds">
+    <article class="find"><span class="fn">1</span><div>
+      <b>Una aula reservada tota una setmana: Q3/0013, del 15 al 19 de març</b>
+      <p class="big">23 classes</p>
+      <p class="how">L’aula es reserva per a un acte de l’Escola, així que les classes que hi havia aquella setmana s’han de fer en un altre lloc. Cada classe passa a una aula lliure el mateix dia i a la mateixa hora, sobretot a Q3/0003 i Q3/0011, però també a Q3/0009, Q2/1003, Q4/1003, Q3/1003 i QC/0015 (un laboratori). Ningú no canvia d’horari.</p></div></article>
+    <article class="find"><span class="fn">2</span><div>
+      <b>Un grup que ja no hi cap: Transmissió de Calor i Termotècnia (TE/21)</b>
+      <p class="big">91 → 130 alumnes · 31 sessions</p>
+      <p class="how">El grup feia classe a les aules Q4/0011 i Q4/0007, de 117 places, i amb 130 alumnes ja no hi caben. Hem optat per canviar-lo d’aula en comptes de desdoblar-lo, perquè així no s’afegeix cap classe nova. Les 31 sessions, de l’1 de febrer al 20 de maig, passen a Q3/1007, que té exactament 130 places (una de les sessions va a Q3/1011, que també en té 130). Ara el grup hi cap just, sense cap plaça de sobra.</p></div></article>
+    <article class="find"><span class="fn">3</span><div>
+      <b>Una avaria: Q1/1003, el dimecres 10 de març</b>
+      <p class="big">4 classes</p>
+      <p class="how">El projector i l’ordinador d’aquesta aula no funcionen i no es poden arreglar al moment. Les quatre classes que hi havia aquell dia (Matemàtica Discreta tres vegades i Visió per Computador) es fan a Q1/1011 i Q1/1007, que són al mateix passadís, a la mateixa hora.</p></div></article>
+    <article class="find"><span class="fn">4</span><div>
+      <b>Una sessió cancel·lada: la S11527 del 8 de març</b>
+      <p class="big">Recuperada el 15 de març, 9.30 a 11.30</p>
+      <p class="how">Era una classe de teoria de Transmissió de Calor i Termotècnia. S’ha de recuperar un altre dia, com a molt tard el 19 de març, en una franja en què el professorat, l’alumnat i una aula estiguin lliures. El programa prova els dies i hores possibles per ordre de proximitat i tria el primer en què tot és lliure: el dilluns 15 de març a Q3/1007. Aquesta és l’única classe que canvia de dia.</p></div></article>
+  </div>
+  <p>El verificador compta quants canvis hi ha respecte de l’horari del 5.2, que és el que s’ha de minimitzar.</p>
+
+  <h3>Les excepcions que declarem</h3>
+  <p>Hi ha 10 classes que normalment no es poden tocar, però aquí han hagut de canviar d’aula, perquè la seva aula estava tancada i això no es pot negociar. Mantenen el mateix dia i la mateixa hora, i ho declarem amb la justificació:</p>
+  <div class="tablewrap"><table>
+    <tr><th>Qui</th><th>Classes</th><th>Per què</th></tr>
+    <tr><td>Classes fixades de GEI 1r i 2n</td><td class="n">8</td><td>Normalment no es toquen, però la seva aula és la Q3/0013, que estava tancada.</td></tr>
+    <tr><td>Laboratoris (PLAB)</td><td class="n">2</td><td>Normalment no es toquen, ni l’horari ni l’aula, però el seu laboratori era a Q3/0013.</td></tr>
+  </table></div>
+  
+  <p>Per a cada una de les 59 classes, el programa escriu una línia amb l’assignatura i el grup, el que passa (d’on surt i on va), el motiu, i el professorat i l’alumnat afectats. </p>
+  <a class="btn" href="https://assistent-horaris---escola-enginyeria-uab-9eku75wuwjrs4acicu5w.streamlit.app/" target="_blank" rel="noopener">Prova-ho a l’aplicació</a>
+</section>
+
+
+<section id="s54">
+  <p class="kicker">5.4 </p>
+  <h2>Grau nou: hi caben 40 alumnes més?</h2>
+  <div class="step">
+    <dl>
+      <dt>Què hem fet</dt><dd>Hem afegit les classes del grau nou a la proposta ja validada del 5.2 i hem deixat que el programa les col·loqui sense tocar res del que ja funcionava. Les classes del grau nou ja tenen dia i hora (totes al matí, perquè és de 1r); només els faltava l’aula.</dd>
+      <dt>Resultat</dt><dd><span class="tag">Vàlid</span> Sí, hi caben. 235 classes noves, totes amb aula, en 6 aules. Cap classe existent canvia. Al pic hi ha 16 de 21 aules ordinàries ocupades i les 2 de reserva queden lliures. Cap excepció nova.</dd>
+    </dl>
+  </div>
+ 
+  <h3>Quin és el grau nou</h3>
+  <p>És un grau fictici de primer curs, que a les dades es diu <b>GNOU</b> (Grau Nou), amb 40 alumnes. Té cinc assignatures i en total són 235 classes, unes 370 hores. Els 40 alumnes es reparteixen així: la teoria es fa amb tot el grup (40) i els problemes en grups de 20. Per a la seva incorporació no s'ha hagut de fer cap modificació de cap altre grau o màster.</p>
+ 
+ 
+  <h3>Les assignatures noves i on es fan</h3>
+    <p>El programa ha repartit les 235 classes en 6 aules: tres seminaris de 20 places per als problemes i tres aules docents per a la teoria.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Assignatura</th><th>Grups</th><th>Classes</th><th>Quan</th><th>Aules</th></tr>
+      <tr><td>GN Programació Avançada</td><td>2 de problemes (20 alumnes)</td><td class="n">55</td><td>Dilluns i dimecres, 2 hores</td><td>Problemes: QC/3115.2 (28) i QC/3115.4 (27)</td></tr>
+      <tr><td>GN Espais Vectorials</td><td>1 de teoria (40) i 2 de problemes (20)</td><td class="n">39</td><td>Teoria dijous, problemes dimecres</td><td>Teoria: Q4/1013, 88 places (13) · Problemes: QC/3115.1 (26)</td></tr>
+      <tr><td>GN Organització i Gestió d’Empreses</td><td>1 de teoria (40) i 2 de problemes (20)</td><td class="n">44</td><td>Teoria divendres, problemes dilluns</td><td>Teoria: Q4/1003, 48 places (15) · Problemes: QC/3115.2 (28) i QC/3115.1 (1)</td></tr>
+      <tr><td>GN Grafs, Topologia i Geometria Discreta</td><td>1 de teoria (40) i 2 de problemes (20)</td><td class="n">41</td><td>Teoria dimarts, problemes dilluns</td><td>Teoria: Q3/1003, 100 places (13) · Problemes: QC/3115.4 (28)</td></tr>
+      <tr><td>GN Xarxes d’Ordinadors i Internet</td><td>1 de teoria (40) i 3 de problemes (20)</td><td class="n">56</td><td>Teoria dimarts, problemes dijous i divendres</td><td>Teoria: Q4/1013, 88 places (13) · Problemes: QC/3115.1 (43)</td></tr>
+    </table></div>
+    
+  
+
+  <section id="nivell3">
+    <p class="kicker">Nivell 3 </p>
+    <h2>L’assistent per a Gestió Acadèmica</h2>
+    <p>Hem fet una aplicació web amb cinc eines. La part de càlcul la fa sempre el verificador oficial, de manera que tot el que diu l’aplicació es pot comprovar. </p>
+    <a class="btn" href="https://assistent-horaris---escola-enginyeria-uab-9eku75wuwjrs4acicu5w.streamlit.app/" target="_blank" rel="noopener">Prova-ho a l’aplicació</a>
+    <div class="tabs">
+      <div class="tab"><h3>Imprevist</h3><p>Triem l’aula i els dies. Proposa on es fa cada classe, explica les excepcions i dona el registre de canvis.</p></div>
+      <div class="tab"><h3>Horari</h3><p>Consulta per titulació, curs i dia, amb assignatura, hores, grup i aula. Es pot exportar.</p></div>
+      <div class="tab"><h3>PDF</h3><p>Genera l’horari de cada curs, grau o màster, setmana a setmana, amb tots els cursos o només els triats.</p></div>
+      <div class="tab"><h3>Aules lliures</h3><p>Mostra quines aules estan buides en una data, franja i mida.</p></div>
+      <div class="tab"><h3>Buscador</h3><p>Dona una aula, un dia i una franja, i diu quina classe, assignatura i grup hi ha.</p></div>
+    </div>
+  </section>
+
+<footer>Mar Massanas · UAB THE HACK! 2026 · Escola d’Enginyeria de la UAB (EEBE). Les dades són del curs 2026-27 i s’usen com a model del curs 2027-28.</footer>
+</main>
+</div>
+<button class="themebtn" id="tbtn" type="button" aria-label="Canvia entre tema clar i fosc">Tema</button>
+<script>
+(function(){
+  var r=document.documentElement,b=document.getElementById('tbtn');
+  function cur(){var t=r.getAttribute('data-theme');if(t)return t;return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+  b.addEventListener('click',function(){r.setAttribute('data-theme',cur()==='dark'?'light':'dark')});
+})();
+</script>
+
+</body></html>
