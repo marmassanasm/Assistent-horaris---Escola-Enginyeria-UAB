@@ -28,8 +28,8 @@ from horaris.model import carrega_base, fmt, llegeix_proposta
 
 st.set_page_config(page_title="Assistent d'horaris EEBE", layout='wide')
 estil.aplica()
-st.title("Assistent d'horaris · EEBE")
-st.caption("Verificador oficial com a font de veritat. Els avisos són esborranys: no s'envia res.")
+st.title("Assistent d'horaris - Escola d'Enginyeria UAB")
+st.caption("Hackathon 2026 - Mar Massanas")
 
 # ---------------------------------------------------------------- dades i llistes
 TITULACIONS = {
